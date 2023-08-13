@@ -1,4 +1,4 @@
-export default function InvestmentUserInputForm({ handler }) {
+export default function InvestmentUserInputForm({ handler, resetDataInputedHandler}) {
 
     const submitHandler = (event) => {
         event.preventDefault();
@@ -23,6 +23,7 @@ export default function InvestmentUserInputForm({ handler }) {
         }
 
         handler(investmentData);
+        resetDataInputedHandler();
     }
 
 

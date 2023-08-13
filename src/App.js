@@ -5,6 +5,8 @@ import { useState } from 'react';
 
 function App() {
 
+  const [dataInputed, setDataInputed] = useState(false);
+
   const [userInput, setUserInput] = useState({
     currentSavings: "",
     yearlyContribution: "",
@@ -14,13 +16,18 @@ function App() {
 
   const userInputHandler = (userData) => {
     setUserInput(userData);
+    setDataInputed(true);
+  }
+
+  const resetDataInputted = () => {
+    setDataInputed(false);
   }
 
   return (
     <div>
       <InvestmentHeader />
-      <InvestmentUserInputForm handler={userInputHandler} userInput={userInput}/>
-      <InvestmentResultsTable userData={userInput} />
+      <InvestmentUserInputForm handler={userInputHandler} resetDataInputedHandler={resetDataInputted} />
+      {dataInputed && <InvestmentResultsTable userData={userInput} />}
     </div>
   );
 }
